@@ -1,0 +1,13 @@
+<h1>Books Page</h1>
+
+<div class="row">
+  <div class="col-md-5">
+    {{#each books}}
+    <div class="well">
+      <h3>{{name}} {{author}}</h3>
+      <div>$ {{price}}</div>
+      <div>{{lastUpdated}}</div>
+    </div>
+    <hr/> {{/each}}
+  </div>
+</div>
