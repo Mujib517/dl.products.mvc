@@ -7,7 +7,8 @@ class BookCtrl {
 
       const books = await bookSvc.get();
       res.status(200);
-      res.render("books", { loading: true, books: books });
+      res.locals.books = books;
+      res.render("books");
     }
     catch (err) {
       //log
