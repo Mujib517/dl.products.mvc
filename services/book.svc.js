@@ -15,6 +15,9 @@ class BookService {
     return Book.findByIdAndRemove(id).exec();
   }
 
+  getById(id) {
+    return Book.findById(id).exec();
+  }
 }
 
 

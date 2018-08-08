@@ -42,6 +42,16 @@ class BookCtrl {
       res.render("error");
     }
   }
+
+  async getById(req, res) {
+    try {
+      const book = await bookSvc.getById(req.params.id);
+      res.render("book-detail", { book: book });
+    }
+    catch (err) {
+      res.render("error");
+    }
+  }
 }
 
 module.exports = new BookCtrl()

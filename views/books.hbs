@@ -5,7 +5,8 @@
     <a href="/books/new" class="btn btn-success">New Book</a>
     {{#each books}}
     <div class="well">
-      <h3>{{name}} {{author}}</h3>
+      
+      <a href="/books/{{_id}}"><h3>{{name}} {{author}}</h3></a>
       <div>$ {{price}}</div>
       <div>{{lastUpdated}}</div>
 
