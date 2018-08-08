@@ -15,6 +15,22 @@ class BookCtrl {
       res.render("books");
     }
   }
+
+  new(req, res) {
+    res.render("new-book"); //new-book.hbs
+  }
+
+  async save(req, res) {
+    try {
+      //req.body.inStock = req.body.inStock ? true : false;
+      req.body.inStock = !!req.body.inStock;
+      await bookSvc.save(req.body);
+      res.redirect('/books'); //book
+    }
+    catch (err) {
+      res.redirect('/books');
+    }
+  }
 }
 
 module.exports = new BookCtrl()

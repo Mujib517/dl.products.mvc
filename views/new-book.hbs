@@ -1,0 +1,24 @@
+<h1>Add New Book</h1>
+
+<form method="POST" action="/books">
+  <div class="row">
+    <div class="col-md-5">
+      <div class="form-group">
+        <input type="text" name="name" placeholder="Name" class="form-control">
+      </div>
+      <div class="form-group">
+        <input type="text" name="author" placeholder="Author" class="form-control">
+      </div>
+      <div class="form-group">
+        <input type="text" name="price" placeholder="Price" class="form-control">
+      </div>
+      <div class="form-group">
+        InStock?
+        <input type="checkbox" name="inStock">
+      </div>
+      <div class="form-group">
+        <button type="submit" class="btn btn-success">Save Book</button>
+      </div>
+    </div>
+  </div>
+</form>

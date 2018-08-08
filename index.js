@@ -4,6 +4,7 @@ const PORT = process.env.PORT || 3000;
 const hbs = require('express-hbs');
 const mongoose = require('mongoose');
 const config = require('./config');
+const bodyParser = require('body-parser');
 
 app.listen(PORT, function () {
   console.log("Server is running on ", PORT);
@@ -20,7 +21,7 @@ mongoose.connect(config.conStr, { useNewUrlParser: true }, function () {
   console.log("Connected");
 });
 
-
+app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static('lib'));
 
 const defaultRouter = require('./routes/default.router');
