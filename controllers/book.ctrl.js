@@ -12,7 +12,7 @@ class BookCtrl {
     catch (err) {
       //log
       console.log(err);
-      res.render("books");
+      res.render("error");
     }
   }
 
@@ -28,7 +28,7 @@ class BookCtrl {
       res.redirect('/books'); //book
     }
     catch (err) {
-      res.redirect('/books');
+      res.render("error");
     }
   }
 }
