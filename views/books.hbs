@@ -2,12 +2,18 @@
 
 <div class="row">
   <div class="col-md-5">
-  <a href="/books/new" class="btn btn-success">New Book</a>
+    <a href="/books/new" class="btn btn-success">New Book</a>
     {{#each books}}
     <div class="well">
       <h3>{{name}} {{author}}</h3>
       <div>$ {{price}}</div>
       <div>{{lastUpdated}}</div>
+
+      <div>
+        <form method="POST" action="/books/delete/{{_id}}">
+          <button class="btn btn-sm btn-danger">Delete</button>
+        </form>
+      </div>
     </div>
     <hr/> {{/each}}
   </div>

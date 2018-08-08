@@ -32,6 +32,16 @@ class BookCtrl {
       res.render("error");
     }
   }
+
+  async delete(req, res) {
+    try {
+      await bookSvc.delete(req.params.id);
+      res.redirect('/books');
+    }
+    catch (err) {
+      res.render("error");
+    }
+  }
 }
 
 module.exports = new BookCtrl()

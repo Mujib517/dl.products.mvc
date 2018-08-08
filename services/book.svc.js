@@ -11,6 +11,10 @@ class BookService {
     return book.save();
   }
 
+  delete(id) {
+    return Book.findByIdAndRemove(id).exec();
+  }
+
 }
 
 
