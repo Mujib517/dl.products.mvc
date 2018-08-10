@@ -34,5 +34,18 @@ const bookRouter = require('./routes/book.router');
 const userRouter = require('./routes/user.router');
 
 app.use('/', defaultRouter);
-app.use('/books', bookRouter);
 app.use('/user', userRouter);
+
+function isAuthenticated(req, res, next) {
+  if (req.isAuthenticated()) next();
+  else {
+    res.redirect("/user/login");
+  }
+}
+
+app.use(isAuthenticated);
+app.use('/books', bookRouter);
+
+
+
+
