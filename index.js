@@ -24,8 +24,15 @@ mongoose.connect(config.conStr, { useNewUrlParser: true }, function () {
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static('lib'));
 
+const passport = require('passport');
+const auth = require('./utilities/auth');
+
+auth(app);
+
 const defaultRouter = require('./routes/default.router');
 const bookRouter = require('./routes/book.router');
+const userRouter = require('./routes/user.router');
 
 app.use('/', defaultRouter);
 app.use('/books', bookRouter);
+app.use('/user', userRouter);
