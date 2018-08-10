@@ -43,7 +43,14 @@ function isAuthenticated(req, res, next) {
   }
 }
 
+function attachAuthInfo(req, res, next) {
+  res.locals.isLoggedin = true;
+  next();
+}
+
 app.use(isAuthenticated);
+app.use(attachAuthInfo);
+
 app.use('/books', bookRouter);
 
 
