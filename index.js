@@ -6,6 +6,12 @@ const mongoose = require('mongoose');
 const config = require('./config');
 const bodyParser = require('body-parser');
 
+const auth = require('./utilities/auth');
+const defaultRouter = require('./routes/default.router');
+const bookRouter = require('./routes/book.router');
+const userRouter = require('./routes/user.router');
+const middlewares = require('./utilities/middlewares');
+
 app.listen(PORT, function () {
   console.log("Server is running on ", PORT);
 });
@@ -24,32 +30,13 @@ mongoose.connect(config.conStr, { useNewUrlParser: true }, function () {
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static('lib'));
 
-const passport = require('passport');
-const auth = require('./utilities/auth');
-
 auth(app);
-
-const defaultRouter = require('./routes/default.router');
-const bookRouter = require('./routes/book.router');
-const userRouter = require('./routes/user.router');
-
 app.use('/', defaultRouter);
 app.use('/user', userRouter);
 
-function isAuthenticated(req, res, next) {
-  if (req.isAuthenticated()) next();
-  else {
-    res.redirect("/user/login");
-  }
-}
-
-function attachAuthInfo(req, res, next) {
-  res.locals.isLoggedin = true;
-  next();
-}
-
-app.use(isAuthenticated);
-app.use(attachAuthInfo);
+app.use(middlewares.isAuthenticated);
+app.use(middlewares.attachAuthInfo);
+app.use(middlewares.noCache);
 
 app.use('/books', bookRouter);
 
